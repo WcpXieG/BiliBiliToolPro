@@ -59,14 +59,10 @@ env:
   Ray_Serilog__WriteTo__0__Args__outputTemplate: ${{secrets.CONSOLELOGTEMPLATE}}         
 
 jobs:
-
-
   run-daily-task:
 
     runs-on: ubuntu-latest
     environment: Production
-    needs: pre-check
-    if: needs.pre-check.outputs.result=='开启'
 
     steps:
 
