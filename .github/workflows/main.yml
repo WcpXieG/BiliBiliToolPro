@@ -60,9 +60,6 @@ env:
 
 jobs:
 
-  pre-check:
-    runs-on: ubuntu-latest
-
 
   run-daily-task:
 
