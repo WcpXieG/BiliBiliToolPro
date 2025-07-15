@@ -1,5 +1,3 @@
-# 每日任务
-
 name: bilibili-daily-task
 
 
@@ -60,6 +58,15 @@ env:
 
 jobs:
 
+  pre-check:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.check.outputs.result }} # 不能直接传递secrets的值，否则会被skip，需要转一下
+    steps:
+    - id: check
+      if: env.IsOpenDailyTask=='true'
+      run: |
+        echo "::set-output name=result::开启"
 
   run-daily-task:
 
@@ -88,4 +95,4 @@ jobs:
     - name: Test APP
       run: |
         cd ./src/Ray.BiliBiliTool.Console
-        dotnet run --runTasks
+        dotnet run --runTasks=Daily
